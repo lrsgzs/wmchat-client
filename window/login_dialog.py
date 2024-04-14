@@ -15,6 +15,7 @@ if isWin11():
     from qframelesswindow import AcrylicWindow as Window
 else:
     from qframelesswindow import FramelessWindow as Window
+setThemeColor("#0078d4")
 
 
 class LoginDialog(Window, login_dialog.LoginDialogUI):
