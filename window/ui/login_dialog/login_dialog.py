@@ -15,7 +15,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(900, 550)
-        Dialog.setMinimumSize(QtCore.QSize(360, 530))
+        Dialog.setMinimumSize(QtCore.QSize(750, 530))
         Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(Dialog)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -30,6 +30,7 @@ class Ui_Dialog(object):
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/images/leftimg.png"))
         self.label.setObjectName("label")
+        self.label.setScaledContents(False)
         self.horizontalLayout_2.addWidget(self.label)
         self.frame = QtWidgets.QFrame(Dialog)
         self.frame.setMinimumSize(QtCore.QSize(360, 0))
@@ -93,7 +94,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "登录 - 西瓜聊天"))
         self.BodyLabel.setText(_translate("Dialog", "账号"))
         self.BodyLabel_2.setText(_translate("Dialog", "密码"))
         self.login_btn.setText(_translate("Dialog", "登录"))

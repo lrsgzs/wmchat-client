@@ -33,7 +33,7 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         self.titleBar.titleLabel.setStyleSheet("""
                     QLabel{
                         background: transparent;
-                        font: 13px 'Segoe UI';
+                        font: 13px 'Microsoft YaHei UI';
                         padding: 0 4px;
                         color: white
                     }
@@ -43,11 +43,19 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
-        self.label.setScaledContents(False)
+        self.setWindowTitle("登录 - 西瓜聊天")
+        self.setWindowIcon(QIcon(":/images/leftimg.png"))
+
+    def setWindowTitle(self, a0):
+        super().setWindowTitle(a0)
+        try:
+            self.titleBar.titleLabel.setText(a0)
+        except AttributeError:
+            pass
 
     def resizeEvent(self, e):
         super().resizeEvent(e)
-        pixmap = QPixmap(":/images/background.jpg").scaled(
+        pixmap = QPixmap(":/images/leftimg.png").scaled(
             self.label.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
         self.label.setPixmap(pixmap)
 

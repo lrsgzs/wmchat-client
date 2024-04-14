@@ -12,7 +12,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>360</width>
+    <width>750</width>
     <height>530</height>
    </size>
   </property>
@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>登录 - 西瓜聊天</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
@@ -51,6 +51,9 @@
      </property>
      <property name="text">
       <string notr="true"/>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
      <property name="pixmap">
       <pixmap resource="res/res.qrc">:/images/leftimg.png</pixmap>
