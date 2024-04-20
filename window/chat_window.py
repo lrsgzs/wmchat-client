@@ -6,7 +6,10 @@ from qfluentwidgets import FluentIcon as Icon
 import sys
 
 setThemeColor("#0078d4")
-
+try:
+    from .ui import account_widget
+except ImportError:
+    from ui import account_widget
 
 class Widget(QFrame):
     def __init__(self, text: str, parent=None):
@@ -44,7 +47,7 @@ class ChatWindow(MSFluentWindow):
         self.chat_interface = Widget("Chat Frame", self)
         self.friend_interface = Widget("Friend Frame", self)
         self.settings_interface = Widget("Settings Frame", self)
-        self.account_interface = Widget("Account Frame", self)
+        self.account_interface = account_widget.AccountWidget()
 
         self.addSubInterface(
             self.chat_interface,

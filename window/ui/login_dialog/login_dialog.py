@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'register_dialog.ui'
+# Form implementation generated from reading ui file 'login_dialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -28,9 +28,9 @@ class Ui_Dialog(object):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setText("")
+        self.label.setScaledContents(False)
         self.label.setPixmap(QtGui.QPixmap(":/images/leftimg.png"))
         self.label.setObjectName("label")
-        self.label.setScaledContents(False)
         self.horizontalLayout_2.addWidget(self.label)
         self.frame = QtWidgets.QFrame(Dialog)
         self.frame.setMinimumSize(QtCore.QSize(360, 0))
