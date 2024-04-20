@@ -83,7 +83,7 @@ class ChatWindow(MSFluentWindow):
         self.addSubInterface(
             self.account_interface,
             QIcon("ui/login_dialog/res/leftimg.png"),
-            'zhiyiYo',
+            'user',
             position=NavigationItemPosition.BOTTOM
         )
         self.addSubInterface(
