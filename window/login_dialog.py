@@ -6,12 +6,14 @@ import sys
 
 try:
     from .ui import login_dialog
-    from .utils import isWin11
+    from . import register_dialog
+    from .utils import is_win11
 except ImportError:
     from ui import login_dialog
-    from utils import isWin11
+    import register_dialog
+    from utils import is_win11
 
-if isWin11():
+if is_win11():
     from qframelesswindow import AcrylicWindow as Window
 else:
     from qframelesswindow import FramelessWindow as Window
@@ -27,7 +29,7 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         self.titleBar.raise_()
 
         self.windowEffect.setMicaEffect(self.winId(), isDarkMode=isDarkTheme())
-        if not isWin11():
+        if not is_win11():
             color = QColor(25, 33, 42) if isDarkTheme() else QColor(240, 244, 249)
             self.setStyleSheet(f"LoginWindow{{background: {color.name()}}}")
 
@@ -47,6 +49,22 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         self.setWindowTitle("登录 - 西瓜聊天")
         self.setWindowIcon(QIcon(":/images/leftimg.png"))
 
+        self.login_btn.clicked.connect(self.login)
+        self.register_btn.clicked.connect(self.register)
+
+    def login(self):
+        # w = MessageBox("提示", "登录成功", self)
+        # w.yesButton.setText("好的")
+        # w.cancelButton.hide()
+        # w.exec()
+        pass
+
+    def register(self):
+        window = register_dialog.RegisterDialog()
+        window.back.connect(self.show)
+        window.show()
+        self.hide()
+
     def setWindowTitle(self, a0):
         super().setWindowTitle(a0)
         try:
@@ -62,12 +80,16 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
     QApplication.setHighDpiScaleFactorRoundingPolicy(
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
+    app = QApplication(sys.argv)
+    translator = FluentTranslator(QLocale())
+    app.installTranslator(translator)
+
     window = LoginDialog()
     window.show()
+
     sys.exit(app.exec())
