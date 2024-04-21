@@ -1,1 +1,1 @@
-from .register_dialog import Ui_Dialog as RegisterDialogUI
+from .register_dialog import Ui_RegisterDialog as RegisterDialogUI

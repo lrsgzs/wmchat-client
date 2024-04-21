@@ -1,1 +1,1 @@
-from .login_dialog import Ui_Dialog as LoginDialogUI
+from .login_dialog import Ui_LoginDialog as LoginDialogUI

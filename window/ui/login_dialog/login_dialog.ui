@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>LoginDialog</class>
+ <widget class="QDialog" name="LoginDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,6 +24,10 @@
   </property>
   <property name="windowTitle">
    <string>登录 - 西瓜聊天</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res/res.qrc">
+    <normaloff>:/icon/icon.png</normaloff>:/icon/icon.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <property name="spacing">
@@ -52,11 +56,11 @@
      <property name="text">
       <string notr="true"/>
      </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
      <property name="pixmap">
       <pixmap resource="res/res.qrc">:/images/leftimg.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
@@ -122,7 +126,10 @@
            </font>
           </property>
           <property name="text">
-           <string notr="true">🍉</string>
+           <string notr="true"/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="res/res.qrc">:/icon/icon.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>

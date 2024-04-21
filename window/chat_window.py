@@ -7,9 +7,12 @@ import sys
 
 setThemeColor("#0078d4")
 try:
-    from .ui import account_widget
+    from . import account_widget
+    from . import res
 except ImportError:
-    from ui import account_widget
+    import account_widget
+    import res
+
 
 class Widget(QFrame):
     def __init__(self, text: str, parent=None):
@@ -38,6 +41,7 @@ class ChatWindow(MSFluentWindow):
     def init_window(self):
         self.resize(900, 700)
         self.setWindowTitle("西瓜聊天")
+        self.setWindowIcon(QIcon(":/icon/icon.png"))
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
@@ -77,15 +81,9 @@ class ChatWindow(MSFluentWindow):
             position=NavigationItemPosition.SCROLL,
         )
 
-        # self.navigationInterface.addWidget(
-        #     routeKey='account',
-        #     widget=NavigationAvatarWidget("abc", "ui/login_dialog/res/leftimg.png"),
-        #     onClick=lambda: ...,
-        #     position=NavigationItemPosition.BOTTOM,
-        # )
         self.addSubInterface(
             self.account_interface,
-            QIcon("ui/login_dialog/res/leftimg.png"),
+            QIcon("res/icon.png"),
             'user',
             position=NavigationItemPosition.BOTTOM
         )

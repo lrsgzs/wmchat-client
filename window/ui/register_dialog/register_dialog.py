@@ -11,17 +11,20 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(900, 550)
-        Dialog.setMinimumSize(QtCore.QSize(750, 530))
-        Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(Dialog)
+class Ui_RegisterDialog(object):
+    def setupUi(self, RegisterDialog):
+        RegisterDialog.setObjectName("RegisterDialog")
+        RegisterDialog.resize(900, 550)
+        RegisterDialog.setMinimumSize(QtCore.QSize(750, 530))
+        RegisterDialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icon/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        RegisterDialog.setWindowIcon(icon)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(RegisterDialog)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label = QtWidgets.QLabel(Dialog)
+        self.label = QtWidgets.QLabel(RegisterDialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -32,7 +35,7 @@ class Ui_Dialog(object):
         self.label.setScaledContents(False)
         self.label.setObjectName("label")
         self.horizontalLayout_2.addWidget(self.label)
-        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame = QtWidgets.QFrame(RegisterDialog)
         self.frame.setMinimumSize(QtCore.QSize(360, 0))
         self.frame.setMaximumSize(QtCore.QSize(360, 16777215))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -55,7 +58,8 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setPointSize(60)
         self.icon.setFont(font)
-        self.icon.setText("🍉")
+        self.icon.setText("")
+        self.icon.setPixmap(QtGui.QPixmap(":/icon/icon.png"))
         self.icon.setScaledContents(True)
         self.icon.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.icon.setObjectName("icon")
@@ -95,16 +99,16 @@ class Ui_Dialog(object):
         self.verticalLayout.addItem(spacerItem4)
         self.horizontalLayout_2.addWidget(self.frame)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(RegisterDialog)
+        QtCore.QMetaObject.connectSlotsByName(RegisterDialog)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, RegisterDialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "注册 - 西瓜聊天"))
-        self.BodyLabel.setText(_translate("Dialog", "账号"))
-        self.BodyLabel_3.setText(_translate("Dialog", "邮箱"))
-        self.BodyLabel_2.setText(_translate("Dialog", "密码"))
-        self.register_btn.setText(_translate("Dialog", "立即注册"))
-        self.login_btn.setText(_translate("Dialog", "已有账号？返回登录"))
+        RegisterDialog.setWindowTitle(_translate("RegisterDialog", "注册 - 西瓜聊天"))
+        self.BodyLabel.setText(_translate("RegisterDialog", "账号"))
+        self.BodyLabel_3.setText(_translate("RegisterDialog", "邮箱"))
+        self.BodyLabel_2.setText(_translate("RegisterDialog", "密码"))
+        self.register_btn.setText(_translate("RegisterDialog", "立即注册"))
+        self.login_btn.setText(_translate("RegisterDialog", "已有账号？返回登录"))
 from qfluentwidgets import BodyLabel, HyperlinkButton, LineEdit, PasswordLineEdit, PrimaryPushButton
 from . import res_rc

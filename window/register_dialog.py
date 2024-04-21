@@ -47,7 +47,7 @@ class RegisterDialog(Window, register_dialog.RegisterDialogUI):
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
         self.setWindowTitle("注册 - 西瓜聊天")
-        self.setWindowIcon(QIcon(":/images/leftimg.png"))
+        self.setWindowIcon(QIcon(":/icon/icon.png"))
 
         self.login_btn.clicked.connect(self.login)
         self.register_btn.clicked.connect(self.register)

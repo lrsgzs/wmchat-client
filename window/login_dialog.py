@@ -47,7 +47,7 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
         self.setWindowTitle("登录 - 西瓜聊天")
-        self.setWindowIcon(QIcon(":/images/leftimg.png"))
+        self.setWindowIcon(QIcon(":/icon/icon.png"))
 
         self.login_btn.clicked.connect(self.login)
         self.register_btn.clicked.connect(self.register)
