@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from qfluentwidgets import *
 from qfluentwidgets import FluentIcon as Icon
+from qframelesswindow import *
 import sys
 
 setThemeColor("#0078d4")
@@ -36,7 +37,13 @@ class ChatWindow(MSFluentWindow):
         self.account_interface = None
 
         self.init_window()
+        self.splashScreen = SplashScreen(self.windowIcon(), self)
+        self.splashScreen.setIconSize(QSize(102, 102))
+
+        self.show()
+        self.init_interface()
         self.init_navigation()
+        self.splashScreen.finish()
 
     def init_window(self):
         self.resize(900, 700)
@@ -47,12 +54,13 @@ class ChatWindow(MSFluentWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
-    def init_navigation(self):
+    def init_interface(self):
         self.chat_interface = Widget("Chat Frame", self)
         self.friend_interface = Widget("Friend Frame", self)
         self.settings_interface = Widget("Settings Frame", self)
         self.account_interface = account_widget.AccountWidget()
 
+    def init_navigation(self):
         self.addSubInterface(
             self.chat_interface,
             Icon.CHAT,
@@ -96,13 +104,12 @@ class ChatWindow(MSFluentWindow):
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
     QApplication.setHighDpiScaleFactorRoundingPolicy(
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
+    app = QApplication(sys.argv)
     window = ChatWindow()
     window.show()
-
     sys.exit(app.exec())

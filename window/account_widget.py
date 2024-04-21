@@ -13,4 +13,3 @@ class AccountWidget(QWidget, account_widget.AccountWidgetUI):
 
         self.info.hide()
         self.avatar.hide()
-
