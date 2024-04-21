@@ -1,3 +1,4 @@
+from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 try:
@@ -7,9 +8,13 @@ except ImportError:
 
 
 class AccountWidget(QWidget, account_widget.AccountWidgetUI):
-    def __init__(self):
+    logout_event = pyqtSignal()
+
+    def __init__(self, user_id: int=0):
         super().__init__()
         self.setupUi(self)
+
+        self.user_id = user_id
 
         self.info.hide()
         self.avatar.hide()

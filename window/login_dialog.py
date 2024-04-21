@@ -25,6 +25,8 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         super().__init__()
         self.setupUi(self)
 
+        self.window = None
+
         self.setTitleBar(SplitTitleBar(self))
         self.titleBar.raise_()
 
@@ -53,16 +55,12 @@ class LoginDialog(Window, login_dialog.LoginDialogUI):
         self.register_btn.clicked.connect(self.register)
 
     def login(self):
-        # w = MessageBox("提示", "登录成功", self)
-        # w.yesButton.setText("好的")
-        # w.cancelButton.hide()
-        # w.exec()
         pass
 
     def register(self):
-        window = register_dialog.RegisterDialog()
-        window.back.connect(self.show)
-        window.show()
+        self.window = register_dialog.RegisterDialog()
+        self.window.back.connect(self.show)
+        self.window.show()
         self.hide()
 
     def setWindowTitle(self, a0):

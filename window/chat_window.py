@@ -15,6 +15,22 @@ except ImportError:
     import res
 
 
+class TrayIcon(QSystemTrayIcon):
+    def __init__(self, parent):
+        super().__init__()
+        self.setIcon(parent.windowIcon())
+
+        self.menu = SystemTrayMenu(parent=parent)
+        self.menu.addActions([
+            Action('🎤   唱'),
+            Action('🕺   跳'),
+            Action('🤘🏼   RAP'),
+            Action('🎶   Music'),
+            Action('🏀   篮球'),
+        ])
+        self.setContextMenu(self.menu)
+
+
 class Widget(QFrame):
     def __init__(self, text: str, parent=None):
         super().__init__(parent=parent)
@@ -35,6 +51,7 @@ class ChatWindow(MSFluentWindow):
         self.friend_interface = None
         self.settings_interface = None
         self.account_interface = None
+        self.tray_icon = None
 
         self.init_window()
         self.splashScreen = SplashScreen(self.windowIcon(), self)
@@ -49,6 +66,8 @@ class ChatWindow(MSFluentWindow):
         self.resize(900, 700)
         self.setWindowTitle("西瓜聊天")
         self.setWindowIcon(QIcon(":/icon/icon.png"))
+        self.tray_icon = TrayIcon(self)
+        self.tray_icon.show()
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
