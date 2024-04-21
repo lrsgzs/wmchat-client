@@ -1,8 +1,6 @@
 from qfluentwidgets import *
 
 
-class InfoMessageBox(MessageBox):
-    def __init__(self, title: str, message: str, parent):
-        super().__init__(title, message, parent)
-        self.yesButton.setText("好的")
-        self.cancelButton.hide()
+class InfoMessageBox(object):
+    def __new__(cls, title: str, message: str, parent):
+        return MessageBox(title, message, parent)

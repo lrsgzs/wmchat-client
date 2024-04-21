@@ -16,17 +16,15 @@ except ImportError:
 
 
 class TrayIcon(QSystemTrayIcon):
-    def __init__(self, parent):
+    exit_event = pyqtSignal()
+
+    def __init__(self, parent: MSFluentWindow):
         super().__init__()
         self.setIcon(parent.windowIcon())
 
         self.menu = SystemTrayMenu(parent=parent)
         self.menu.addActions([
-            Action('🎤   唱'),
-            Action('🕺   跳'),
-            Action('🤘🏼   RAP'),
-            Action('🎶   Music'),
-            Action('🏀   篮球'),
+            Action(text='退出', triggered=lambda: self.exit_event.emit()),
         ])
         self.setContextMenu(self.menu)
 
@@ -67,6 +65,7 @@ class ChatWindow(MSFluentWindow):
         self.setWindowTitle("西瓜聊天")
         self.setWindowIcon(QIcon(":/icon/icon.png"))
         self.tray_icon = TrayIcon(self)
+        self.tray_icon.exit_event.connect(QCoreApplication.instance().quit)
         self.tray_icon.show()
 
         desktop = QApplication.desktop().availableGeometry()
@@ -120,6 +119,10 @@ class ChatWindow(MSFluentWindow):
             '设置',
             position=NavigationItemPosition.BOTTOM
         )
+
+    def closeEvent(self, a0):
+        a0.ignore()
+        self.hide()
 
 
 if __name__ == '__main__':
