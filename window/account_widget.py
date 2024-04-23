@@ -10,7 +10,7 @@ except ImportError:
 class AccountWidget(QWidget, account_widget.AccountWidgetUI):
     logout_event = pyqtSignal()
 
-    def __init__(self, user_id: int=0):
+    def __init__(self, user_id: int = 0):
         super().__init__()
         self.setupUi(self)
 
@@ -18,3 +18,6 @@ class AccountWidget(QWidget, account_widget.AccountWidgetUI):
 
         self.info.hide()
         self.avatar.hide()
+
+
+__all__ = ['AccountWidget']

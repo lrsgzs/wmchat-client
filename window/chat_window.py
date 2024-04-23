@@ -3,19 +3,21 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from qfluentwidgets import *
 from qfluentwidgets import FluentIcon as Icon
-from qframelesswindow import *
 import sys
 
 setThemeColor("#0078d4")
 try:
+    from .message_box import *
     from . import account_widget
     from . import res
 except ImportError:
+    from message_box import *
     import account_widget
     import res
 
 
 class TrayIcon(QSystemTrayIcon):
+    show_event = pyqtSignal()
     exit_event = pyqtSignal()
 
     def __init__(self, parent: MSFluentWindow):
@@ -24,6 +26,7 @@ class TrayIcon(QSystemTrayIcon):
 
         self.menu = SystemTrayMenu(parent=parent)
         self.menu.addActions([
+            Action(text='显示主窗口', triggered=lambda: self.show_event.emit()),
             Action(text='退出', triggered=lambda: self.exit_event.emit()),
         ])
         self.setContextMenu(self.menu)
@@ -56,6 +59,7 @@ class ChatWindow(MSFluentWindow):
         self.splashScreen.setIconSize(QSize(102, 102))
 
         self.show()
+        self.init_tray_icon()
         self.init_interface()
         self.init_navigation()
         self.splashScreen.finish()
@@ -64,13 +68,16 @@ class ChatWindow(MSFluentWindow):
         self.resize(900, 700)
         self.setWindowTitle("西瓜聊天")
         self.setWindowIcon(QIcon(":/icon/icon.png"))
-        self.tray_icon = TrayIcon(self)
-        self.tray_icon.exit_event.connect(QCoreApplication.instance().quit)
-        self.tray_icon.show()
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
         self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
+
+    def init_tray_icon(self):
+        self.tray_icon = TrayIcon(self)
+        self.tray_icon.show_event.connect(self.show)
+        self.tray_icon.exit_event.connect(QCoreApplication.instance().quit)
+        self.tray_icon.show()
 
     def init_interface(self):
         self.chat_interface = Widget("Chat Frame", self)
@@ -94,7 +101,7 @@ class ChatWindow(MSFluentWindow):
             routeKey='add_friend',
             icon=Icon.ADD_TO,
             text='添加好友',
-            onClick=lambda: ...,
+            onClick=self.be_friend,
             selectable=False,
             position=NavigationItemPosition.SCROLL,
         )
@@ -102,7 +109,7 @@ class ChatWindow(MSFluentWindow):
             routeKey='create_room',
             icon=Icon.ALBUM,
             text='创建房间',
-            onClick=lambda: ...,
+            onClick=self.create_room,
             selectable=False,
             position=NavigationItemPosition.SCROLL,
         )
@@ -119,6 +126,14 @@ class ChatWindow(MSFluentWindow):
             '设置',
             position=NavigationItemPosition.BOTTOM
         )
+
+    def be_friend(self):
+        w = InfoMessageBox("提示", "添加成功", self)
+        w.exec()
+
+    def create_room(self):
+        w = InfoMessageBox("提示", "创建成功", self)
+        w.exec()
 
     def closeEvent(self, a0):
         a0.ignore()
